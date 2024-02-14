@@ -79,7 +79,6 @@ if st.button('Submit'):
         # Display the prediction
         st.write(prediction[0])
 
-
 with st.container():
     st.write("---")
     st.subheader("Contact me")
