@@ -47,25 +47,28 @@ loaded_model = joblib.load(model_path)
 # Example input fields (replace with actual nutrient names)
 nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 
+# Display input nutrient content in the main frame
+st.header('Input Nutrient Content')
+
 # Get user input for nutrient content
 user_input = {}
 for nutrient in nutrient_columns:
     if nutrient == 'Crop':
         # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 2
-        user_input[nutrient] = st.sidebar.number_input(f'Enter {nutrient} content:', min_value=0, max_value=2, step=1, value=0)
+        user_input[nutrient] = st.number_input(f'Enter {nutrient} content:', min_value=0, max_value=2, step=1, value=0)
     else:
-        user_input[nutrient] = st.sidebar.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
+        user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
 
 # Display the heading for Predicted Chlorophyll Content
 st.subheader('Predicted Chlorophyll Content:')
 
 # Submit button to trigger prediction
-if st.sidebar.button('Submit'):
+if st.button('Submit'):
     # Validate nutrient values to be percentages
     valid_inputs = all(0.0 <= user_input[nutrient] <= 100.0 for nutrient in nutrient_columns if nutrient != 'Crop')
 
     if not valid_inputs:
-        st.sidebar.error("Please enter nutrient values in percentage form (0 to 100).")
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
     else:
         # Convert user input to DataFrame
         user_input_df = pd.DataFrame([user_input])
@@ -75,7 +78,6 @@ if st.sidebar.button('Submit'):
 
         # Display the prediction
         st.write(prediction[0])
-
 
 with st.container():
     st.write("---")
