@@ -36,7 +36,7 @@ import requests
 
 
 # Load the pre-trained Random Forest model
-model_path = (r'C:\Users\17867\Random_Forest_Chl_model.pkl')
+model_path = ("https://github.com/IvoyDino/rf-nutrient-prediction/blob/main/Random_Forest_Chl_model.pkl")
 loaded_model = joblib.load(model_path)
 
 
