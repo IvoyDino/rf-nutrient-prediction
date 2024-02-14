@@ -1,5 +1,5 @@
 import streamlit as st
-import subprocess
+
 
 # Install required libraries
 !pip install scikit-learn
