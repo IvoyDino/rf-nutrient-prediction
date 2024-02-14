@@ -2,7 +2,7 @@ import streamlit as st
 import subprocess
 
 # Install required libraries
-subprocess.run(["pip", "install", "scikit-learn"])
+!pip install scikit-learn
 
 st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
 
