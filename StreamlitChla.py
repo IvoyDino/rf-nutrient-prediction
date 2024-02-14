@@ -41,6 +41,9 @@ model_path = os.path.join(current_directory, 'Random_Forest_Chl_model.pkl')
 # Load the pre-trained Random Forest model
 loaded_model = joblib.load(model_path)
 
+# Example input fields (replace with actual nutrient names)
+nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
+
 # Get user input for nutrient content
 user_input = {}
 for nutrient in nutrient_columns:
