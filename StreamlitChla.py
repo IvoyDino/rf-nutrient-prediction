@@ -47,6 +47,8 @@ nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 # Example input fields (replace with actual nutrient names)
 nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 
+# Display input nutrient content in the main frame
+st.header('Input Nutrient Content')
 
 # Get user input for nutrient content
 user_input = {}
@@ -76,8 +78,7 @@ if st.button('Submit'):
 
         # Display the prediction
         st.write(prediction[0])
-# Display input nutrient content in the main frame
-st.header('Input Nutrient Content')
+
 
 with st.container():
     st.write("---")
