@@ -1,7 +1,4 @@
 # Streamlit app script (StreamlitChla.py)
-pip install pipreqs
-pipreqs 
-
 import streamlit as st
 import sklearn
 
