@@ -1,4 +1,9 @@
+# Streamlit app script (StreamlitChla.py)
 import streamlit as st
+import sklearn
+
+# Check scikit-learn version
+st.write(f"scikit-learn version: {sklearn.__version__}")
 
 st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
 
