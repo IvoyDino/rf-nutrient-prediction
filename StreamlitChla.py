@@ -1,9 +1,5 @@
 import streamlit as st
 
-
-# Install required libraries
-pip install scikit-learn
-
 st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
 
 # Sidebar with input fields
