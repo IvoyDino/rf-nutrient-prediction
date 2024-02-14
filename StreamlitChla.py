@@ -53,9 +53,6 @@ for nutrient in nutrient_columns:
     else:
         user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
 
-# Display the heading for Predicted Chlorophyll Content
-st.subheader('Predicted Chlorophyll Content:')
-
 # Submit button to trigger prediction
 if st.button('Submit'):
     # Validate nutrient values to be percentages
@@ -73,6 +70,10 @@ if st.button('Submit'):
         # Display the prediction
         st.write(prediction[0])
         
+#............Predicted Chlorophyll...........   
+# Display the heading for Predicted Chlorophyll Content
+st.subheader('Predicted Chlorophyll Content:')
+
 with st.container():
     st.write("---")
     st.subheader("Contact me")
