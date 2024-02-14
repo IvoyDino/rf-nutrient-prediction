@@ -3,9 +3,6 @@ import streamlit as st
 import sklearn
 st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
 
-# Check scikit-learn version
-st.write(f"scikit-learn version: {sklearn.__version__}")
-
 # Sidebar with input fields
 st.sidebar.header('Input Nutrient Content')
 
