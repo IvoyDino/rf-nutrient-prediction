@@ -44,17 +44,20 @@ loaded_model = joblib.load(model_path)
 # Example input fields (replace with actual nutrient names)
 nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 
-# Display input nutrient content in two columns
-col1, col2 = st.beta_columns(2)
+# Example input fields (replace with actual nutrient names)
+nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
+
+# Display input nutrient content in the main frame
+st.header('Input Nutrient Content')
 
 # Get user input for nutrient content
 user_input = {}
 for nutrient in nutrient_columns:
     if nutrient == 'Crop':
         # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 2
-        user_input[nutrient] = col1.number_input(f'Enter {nutrient} content:', min_value=0, max_value=2, step=1, value=0)
+        user_input[nutrient] = st.number_input(f'Enter {nutrient} content:', min_value=0, max_value=2, step=1, value=0)
     else:
-        user_input[nutrient] = col2.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
+        user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
 
 # Display the heading for Predicted Chlorophyll Content
 st.subheader('Predicted Chlorophyll Content:')
