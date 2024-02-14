@@ -67,13 +67,15 @@ if st.button('Submit'):
         # Make predictions
         prediction = loaded_model.predict(user_input_df)
 
+        # Display the prediction
+        st.write("The predicted Chlorophyll content is:", prediction[0])
+
         
         
 #............Predicted Chlorophyll...........   
 # Display the heading for Predicted Chlorophyll Content
 st.subheader('Predicted Chlorophyll Content:')
-        # Display the prediction
-        st.write(prediction[0])
+        
 
 with st.container():
     st.write("---")
