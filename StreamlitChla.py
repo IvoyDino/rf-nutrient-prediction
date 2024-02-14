@@ -30,15 +30,22 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 import joblib  # For loading the pre-trained model
 import requests
+import os
 
 
 # In[3]:
 
 
 # Load the pre-trained Random Forest model
-model_path = (r'C:\Users\17867\rf-nutrient-prediction\Random_Forest_Chl_model.pkl')
-loaded_model = joblib.load(model_path)
+model_path = 'Random_Forest_Chl_model.pkl'
+# Get the current working directory
+current_directory = os.getcwd()
 
+# Specify the relative path to the model file
+model_path = os.path.join(current_directory, 'Random_Forest_Chl_model.pkl')
+
+# Load the pre-trained Random Forest model
+loaded_model = joblib.load(model_path)
 
 # Example input fields (replace with actual nutrient names)
 nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
