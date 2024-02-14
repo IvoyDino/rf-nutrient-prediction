@@ -68,7 +68,7 @@ if st.button('Submit'):
         prediction = loaded_model.predict(user_input_df)
 
         # Display the prediction
-        st.write("The predicted Chlorophyll content is:", prediction[0])
+        st.subheader("The predicted Chlorophyll content is:", prediction[0])
 
         
         
