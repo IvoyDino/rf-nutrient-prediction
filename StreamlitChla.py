@@ -3,9 +3,6 @@ import streamlit as st
 import sklearn
 st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
 
-# Sidebar with input fields
-st.sidebar.header('Input Nutrient Content')
-
 #...........HEADER SECTION.............
 with st.container():
     st.subheader("Prediction of Chlorophyll content in plants")
