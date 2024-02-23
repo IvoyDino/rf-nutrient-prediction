@@ -6,7 +6,7 @@ st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="ðŸ
 #...........HEADER SECTION.............
 with st.container():
     st.title("Predict Plant Nutrients")
-    st.write("The study was conducted by **Ivan Oyege** from Florida International Univeristy, and the data used in the predicition was from Dr. Yufeng Ge, from University of Nebraska-Lincoln and the link to the paper in which the data was first used is given in the link below")
+    st.write("Hello! Thank you for using this web app. This web app is still a prototype and the accuracy of the nutrient predictions will be improved with time. Kindly leave a comment based on your experience and accuracy of the predictions")
     st.write("[Learn more in this paper>](https://academic.oup.com/jxb/article/74/14/4050/7109174)")
 
 #........More Information about using the website..............
