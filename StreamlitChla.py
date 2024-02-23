@@ -5,7 +5,7 @@ st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="ðŸ
 
 #...........HEADER SECTION.............
 with st.container():
-    st.subheader("Predict your plant nutrients")
+    st.subheader("Predict Plant Nutrients")
     st.title("Machine Learning approach using Random Forest Model")
     st.write("The study was conducted by **Ivan Oyege** from Florida International Univeristy, and the data used in the predicition was from Dr. Yufeng Ge, from University of Nebraska-Lincoln and the link to the paper in which the data was first used is given in the link below")
     st.write("[Learn more in this paper>](https://academic.oup.com/jxb/article/74/14/4050/7109174)")
