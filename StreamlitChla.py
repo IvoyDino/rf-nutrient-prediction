@@ -43,14 +43,6 @@ def get_user_input(nutrient_columns):
 def make_predictions(loaded_model, user_input_df):
     return loaded_model.predict(user_input_df)
 
-# Streamlit app configuration
-st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
-
-# Header Section
-with st.container():
-    st.title("Predict Plant Nutrients")
-    st.write("Hello! Thank you for using this web app. This web app is still a prototype under improvement. Kindly leave a comment based on your experience and the accuracy of the predictions.")
-
 # Chlorophyll Prediction Section
 with st.container():
     st.write("---")
