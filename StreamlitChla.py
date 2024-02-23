@@ -8,8 +8,6 @@ with st.container():
     st.write("Hello! Thank you for using this web app. This web app is still a prototype under improvement. Kindly leave a comment based on your experience and the accuracy of the predictions.")
     
 #........More Information about using the website..............
-pip install --upgrade scikit-learn
-
 with st.container():
     st.write("---")
     st.header("Plant Chlorophyll prediction")
