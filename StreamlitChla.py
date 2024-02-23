@@ -8,7 +8,7 @@ with st.container():
     st.write("Hello! Thank you for using this web app. This web app is still a prototype under improvement. Kindly leave a comment based on your experience and the accuracy of the predictions.")
     
 #........More Information about using the website..............
-with st.container():
+with st.container(): 
     st.write("---")
     st.header("Plant Chlorophyll prediction")
     st.write("Input the values of each of the **nutrients in percentage form** and the Chlorophyll concentration will be automatically computed and displayed below as 'Predicted Chlorophyll Content'.")
