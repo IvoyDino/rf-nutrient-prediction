@@ -1,7 +1,7 @@
 # Streamlit app script (StreamlitChla.py)
 import streamlit as st
 import sklearn
-st.set_page_config(page_title="Chlorophyll Prediction Website", page_icon="🧊", layout="wide")
+st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
 
 #...........HEADER SECTION.............
 with st.container():
