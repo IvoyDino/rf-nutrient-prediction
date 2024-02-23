@@ -7,8 +7,7 @@ st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="ðŸ
 with st.container():
     st.title("Predict Plant Nutrients")
     st.write("Hello! Thank you for using this web app. This web app is still a prototype and the accuracy of the nutrient predictions will be improved with time. Kindly leave a comment based on your experience and accuracy of the predictions")
-    st.write("[Learn more in this paper>](https://academic.oup.com/jxb/article/74/14/4050/7109174)")
-
+    
 #........More Information about using the website..............
 with st.container():
     st.write("---")
