@@ -2,9 +2,6 @@
 import streamlit as st
 import sklearn
 st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
-st.title("Main page")
-st.sidebar.success("Nutrient to Predict")
-                   
 #...........HEADER SECTION.............
 with st.container():
     st.title("Predict Plant Nutrients")
