@@ -22,102 +22,92 @@ import joblib  # For loading the pre-trained model
 import requests
 import os
 
-# Load the pre-trained Random Forest model
-model_path = 'Random_Forest_Chl_model.pkl'
-# Get the current working directory
-current_directory = os.getcwd()
+# Function to load a pre-trained model
+def load_model(model_path):
+    current_directory = os.getcwd()
+    model_path = os.path.join(current_directory, model_path)
+    return joblib.load(model_path)
 
-# Specify the relative path to the model file
-model_path = os.path.join(current_directory, 'Random_Forest_Chl_model.pkl')
+# Function to get user input for nutrient content
+def get_user_input(nutrient_columns):
+    user_input = {}
+    for nutrient in nutrient_columns:
+        if nutrient == 'Crop':
+            # Restrict input values for 'Crop' nutrient based on the model
+            user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0, key=f'{nutrient}_input')
+        else:
+            user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0, key=f'{nutrient}_input')
+    return user_input
 
-# Load the pre-trained Random Forest model
-loaded_model = joblib.load(model_path)
+# Function to make predictions
+def make_predictions(loaded_model, user_input_df):
+    return loaded_model.predict(user_input_df)
 
-# Example input fields (replace with actual nutrient names)
+# Streamlit app configuration
+st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
+
+# Header Section
+with st.container():
+    st.title("Predict Plant Nutrients")
+    st.write("Hello! Thank you for using this web app. This web app is still a prototype under improvement. Kindly leave a comment based on your experience and the accuracy of the predictions.")
+
+# Chlorophyll Prediction Section
+with st.container():
+    st.write("---")
+    st.header("Plant Chlorophyll Prediction")
+    # Load the pre-trained model
+    loaded_model = load_model('Random_Forest_Chl_model.pkl')
+
+    # Get user input for nutrient content
+    user_input = get_user_input(['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop'])
+
+    # Submit button to trigger prediction
+    if st.button('Submit Chlorophyll Prediction'):
+        # Validate nutrient values to be percentages
+        valid_inputs = all(0.0 <= user_input[nutrient] <= 100.0 for nutrient in nutrient_columns if nutrient != 'Crop')
+
+        if not valid_inputs:
+            st.error("Please enter nutrient values in percentage form (0 to 100).")
+        else:
+            # Convert user input to DataFrame
+            user_input_df = pd.DataFrame([user_input])
+
+            # Make predictions
+            prediction = make_predictions(loaded_model, user_input_df)
+
+            # Display the prediction
+            st.write(f"**The predicted Chlorophyll content is:**", prediction[0], "%")
+
+# Nutrient Prediction Sections
 nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
+nutrient_model_paths = ['Nitrogen_Random_Forest_model.pkl', 'Phosphorus_Random_Forest_model.pkl', 'Potassium_Random_Forest_model.pkl', 'Calcium_Random_Forest_model.pkl', 'Magnesium_Random_Forest_model.pkl', 'Sulphur_Random_Forest_model.pkl']
 
-# Get user input for nutrient content
-user_input = {}
-for nutrient in nutrient_columns:
-    if nutrient == 'Crop':
-        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 7
-        user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=7, step=1, value=0)
-    else:
-        user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
+for nutrient, model_path in zip(nutrient_columns[:-1], nutrient_model_paths):
+    with st.container():
+        st.write("---")
+        st.header(f"Plant {nutrient} Prediction")
+        # Load the pre-trained model
+        loaded_model = load_model(model_path)
 
-# Submit button to trigger prediction
-if st.button('Submit'):
-    # Validate nutrient values to be percentages
-    valid_inputs = all(0.0 <= user_input[nutrient] <= 100.0 for nutrient in nutrient_columns if nutrient != 'Crop')
+        # Get user input for nutrient content
+        user_input = get_user_input(nutrient_columns[:-1])
 
-    if not valid_inputs:
-        st.error("Please enter nutrient values in percentage form (0 to 100).")
-    else:
-        # Convert user input to DataFrame
-        user_input_df = pd.DataFrame([user_input])
+        # Submit button to trigger prediction
+        if st.button(f'Submit {nutrient} Prediction'):
+            # Validate nutrient values to be percentages
+            valid_inputs = all(0.0 <= user_input[nutrient] <= 100.0 for nutrient in nutrient_columns if nutrient != 'Crop')
 
-        # Make predictions
-        prediction = loaded_model.predict(user_input_df)
+            if not valid_inputs:
+                st.error(f"Please enter nutrient values in percentage form (0 to 100) for {nutrient}.")
+            else:
+                # Convert user input to DataFrame
+                user_input_df = pd.DataFrame([user_input])
 
-        # Display the prediction
-        st.write("**The predicted Chlorophyll content is:**", prediction[0])
-        
-#........More Information about using the website..............
-with st.container():
-    st.write("---")
-    st.header("Plant Nitrogen prediction")
-    st.write("Input the values of each of the **nutrients in percentage form** and the Chlorophyll concentration will be automatically computed and displayed below as 'Predicted Chlorophyll Content'.")
-    st.write("**NOTE**: fill the 'Crops' field, as follows: **Camelina = 0, Corn = 1, Sorghum = 2, Soy = 3, Strawberries = 4, Dragon fruit = 5, Tomatoes = 6, Sunn hemp = 7**.")
+                # Make predictions
+                prediction = make_predictions(loaded_model, user_input_df)
 
-# Load the pre-trained Random Forest model
-model_path = 'Nitrogen_Random_Forest_model.pkl'
-# Get the current working directory
-current_directory = os.getcwd()
-
-# Specify the relative path to the model file
-model_path = os.path.join(current_directory, 'Nitrogen_Random_Forest_model.pkl')
-
-# Load the pre-trained Random Forest model
-loaded_model = joblib.load(model_path)
-
-# Example input fields (replace with actual nutrient names)
-nutrient_columns = ['P', 'K', 'Ca', 'Mg', 'S', 'Crop']
-
-# Get user input for nutrient content
-user_input = {}
-for nutrient in nutrient_columns:
-    if nutrient == 'Crop':
-        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 7
-        user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=7, step=1, value=0)
-    else:
-        user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
-
-# Submit button to trigger prediction
-if st.button('Submit'):
-    # Validate nutrient values to be percentages
-    valid_inputs = all(0.0 <= user_input[nutrient] <= 100.0 for nutrient in nutrient_columns if nutrient != 'Crop')
-
-    if not valid_inputs:
-        st.error("Please enter nutrient values in percentage form (0 to 100).")
-    else:
-        # Convert user input to DataFrame
-        user_input_df = pd.DataFrame([user_input])
-
-        # Make predictions
-        prediction = loaded_model.predict(user_input_df)
-
-        # Display the prediction
-        st.write("**The predicted Nitrogen content is:**", prediction[0], "%")
-        
-#........More Information about using the website..............
-with st.container():
-    st.write("---")
-    st.header("Plant Nitrogen prediction")
-    st.write("Input the values of each of the **nutrients in percentage form** and the Chlorophyll concentration will be automatically computed and displayed below as 'Predicted Chlorophyll Content'.")
-    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
-
-
-
+                # Display the prediction
+                st.write(f"**The predicted {nutrient} content is:**", prediction[0], "%")
 
 with st.container():
     st.write("---")
