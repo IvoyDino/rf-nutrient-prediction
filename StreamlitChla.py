@@ -12,7 +12,7 @@ with st.container():
     st.write("---")
     st.header("Plant Chlorophyll prediction")
     st.write("Input the values of each of the **nutrients in percentage form** and the Chlorophyll concentration will be automatically computed and displayed below as 'Predicted Chlorophyll Content'.")
-    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+    st.write("**NOTE**: fill the 'Crops' field, as follows: **Camelina = 0, Corn = 1, Sorghum = 2, Soy = 3, Strawberries = 4, Dragon fruit = 5, Tomatoes = 6, Sunn hemp = 7**.")
 
 import pandas as pd
 import streamlit as st
@@ -40,8 +40,8 @@ nutrient_columns = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 user_input = {}
 for nutrient in nutrient_columns:
     if nutrient == 'Crop':
-        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 2
-        user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0)
+        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 7
+        user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=7, step=1, value=0)
     else:
         user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
 
@@ -87,7 +87,7 @@ nutrient_columns = ['P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 user_input = {}
 for nutrient in nutrient_columns:
     if nutrient == 'Crop':
-        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 2
+        # Restrict input values for 'Crop' nutrient to whole numbers between 0 and 7
         user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=7, step=1, value=0)
     else:
         user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
