@@ -101,6 +101,13 @@ if st.button('Submit for Phosphorus Prediction'):
         prediction_phosphorus = make_prediction(phosphorus_model, user_input_df_phosphorus)
         st.write("**The predicted Phosphorus content is:**", prediction_phosphorus[0], "%")
 
+# Sulfur Prediction
+with st.container():
+    st.write("---")
+    st.header("Plant Sulfur prediction")
+    st.write("Input the values of each of the **nutrients in percentage form** and the Sulfurs concentration will be automatically computed and displayed below as 'Predicted Sulfur Content'.")
+    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+
 # Load Sulfur Model
 sulfur_model = load_model('Sulphur_Random_Forest_model.pkl')
 nutrient_columns_sulfur = ['N', 'P', 'K', 'Ca', 'Mg', 'Crop']
