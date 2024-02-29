@@ -22,8 +22,10 @@ def load_model(model_filename):
 
 def get_user_input(nutrient_columns, suffix=''):
     user_input = {}
+    widget_counter = 0  # Counter variable to ensure unique keys
     for nutrient in nutrient_columns:
-        key = f'{nutrient}_{suffix}_{st._get_widget_id()}'
+        key = f'{nutrient}_{suffix}_{widget_counter}'
+        widget_counter += 1
         if nutrient == 'Crop':
             user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0, key=key)
         else:
