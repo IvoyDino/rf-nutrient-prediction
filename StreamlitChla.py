@@ -146,6 +146,28 @@ if st.button('Submit for Sulfur Prediction'):
         prediction_sulfur = make_prediction(sulfur_model, user_input_df_sulfur)
         st.write("**The predicted Sulfur content is:**", prediction_sulfur[0], "%")
 
+# Calcium Prediction
+with st.container():
+    st.write("---")
+    st.header("Plant Calcium prediction")
+    st.write("Input the values of each of the **nutrients in percentage form** and the Calcium concentration will be automatically computed and displayed below as 'Predicted Calcium Content'.")
+    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+
+# Load Calcium Model
+calcium_model = load_model('Calcium_Random_Forest_model.pkl')
+nutrient_columns_calcium = ['N', 'P', 'K', 'Mg', 'S', 'Crop']
+user_input_calcium = get_user_input(nutrient_columns_calcium, suffix='calcium')
+
+# Submit button for Calcium Prediction
+if st.button('Submit for Calcium Prediction'):
+    valid_inputs_calcium = all(0.0 <= user_input_calcium[nutrient] <= 100.0 for nutrient in nutrient_columns_calcium if nutrient != 'Crop')
+    if not valid_inputs_calcium:
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
+    else:
+        user_input_df_calcium = pd.DataFrame([user_input_calcium])
+        prediction_calcium = make_prediction(calcium_model, user_input_df_calcium)
+        st.write("**The predicted Calcium content is:**", prediction_calcium[0], "%")
+
 
 # Contact Section
 with st.container():
