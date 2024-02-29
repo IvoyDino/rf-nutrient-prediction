@@ -101,6 +101,29 @@ if st.button('Submit for Phosphorus Prediction'):
         prediction_phosphorus = make_prediction(phosphorus_model, user_input_df_phosphorus)
         st.write("**The predicted Phosphorus content is:**", prediction_phosphorus[0], "%")
 
+# Potassium Prediction
+with st.container():
+    st.write("---")
+    st.header("Plant Potassium prediction")
+    st.write("Input the values of each of the **nutrients in percentage form** and the Potassium concentration will be automatically computed and displayed below as 'Predicted Potassium Content'.")
+    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+
+# Load Potassium Model
+potassium_model = load_model('Potassium_Random_Forest_model.pkl')
+nutrient_columns_potassium = ['N', 'P', 'Ca', 'Mg', 'S', 'Crop']
+user_input_potassium = get_user_input(nutrient_columns_potassium, suffix='potassium')
+
+# Submit button for Potassium Prediction
+if st.button('Submit Potassium Prediction'):
+    valid_inputs_potassium = all(0.0 <= user_input_potassium[nutrient] <= 100.0 for nutrient in nutrient_columns_potassium if nutrient != 'Crop')
+    if not valid_inputs_potassium:
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
+    else:
+        user_input_df_potassium = pd.DataFrame([user_input_potassium])
+        prediction_potassium = make_prediction(potassium_model, user_input_df_potassium)
+        st.write("**The predicted Potassium content is:**", prediction_potassium[0], "%")
+
+
 # Sulfur Prediction
 with st.container():
     st.write("---")
