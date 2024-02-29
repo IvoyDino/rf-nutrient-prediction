@@ -24,6 +24,7 @@ def get_user_input(nutrient_columns, suffix=''):
     user_input = {}
     for nutrient in nutrient_columns:
         key = f'{nutrient}_{suffix}' if nutrient != 'Crop' else nutrient
+        key = f'{key}_{suffix}' if key in user_input else key
         if nutrient == 'Crop':
             user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0, key=key)
         else:
