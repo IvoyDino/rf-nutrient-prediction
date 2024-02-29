@@ -101,6 +101,21 @@ if st.button('Submit for Phosphorus Prediction'):
         prediction_phosphorus = make_prediction(phosphorus_model, user_input_df_phosphorus)
         st.write("**The predicted Phosphorus content is:**", prediction_phosphorus[0], "%")
 
+# Load Sulfur Model
+sulfur_model = load_model('Sulfur_Random_Forest_model.pkl')
+nutrient_columns_sulfur = ['N', 'P', 'K', 'Ca', 'Mg', 'Crop']
+user_input_sulfur = get_user_input(nutrient_columns_sulfur, suffix='sulfur')
+
+# Submit button for Sulfur Prediction
+if st.button('Submit Sulfur Prediction'):
+    valid_inputs_sulfur = all(0.0 <= user_input_sulfur[nutrient] <= 100.0 for nutrient in nutrient_columns_sulfur if nutrient != 'Crop')
+    if not valid_inputs_sulfur:
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
+    else:
+        user_input_df_sulfur = pd.DataFrame([user_input_sulfur])
+        prediction_sulfur = make_prediction(sulfur_model, user_input_df_sulfur)
+        st.write("**The predicted Sulfur content is:**", prediction_sulfur[0], "%")
+
 
 # Contact Section
 with st.container():
