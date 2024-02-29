@@ -114,7 +114,7 @@ nutrient_columns_potassium = ['N', 'P', 'Ca', 'Mg', 'S', 'Crop']
 user_input_potassium = get_user_input(nutrient_columns_potassium, suffix='potassium')
 
 # Submit button for Potassium Prediction
-if st.button('Submit Potassium Prediction'):
+if st.button('Submit for Potassium Prediction'):
     valid_inputs_potassium = all(0.0 <= user_input_potassium[nutrient] <= 100.0 for nutrient in nutrient_columns_potassium if nutrient != 'Crop')
     if not valid_inputs_potassium:
         st.error("Please enter nutrient values in percentage form (0 to 100).")
