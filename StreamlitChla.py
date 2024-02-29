@@ -7,7 +7,7 @@ with st.container():
     st.title("Predict Plant Nutrients")
     st.write("Hello! Thank you for using this web app. This web app is still a prototype under improvement. Kindly leave a comment based on your experience and the accuracy of the predictions.")
     
-#........More Information about using the website..............
+#........More Information about using the website.............. 
 with st.container():
     st.write("---")
     st.header("Plant Chlorophyll prediction")
