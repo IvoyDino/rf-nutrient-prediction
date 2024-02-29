@@ -27,13 +27,14 @@ def load_model(model_filename):
     loaded_model = joblib.load(model_path)
     return loaded_model
 
-def get_user_input(nutrient_columns):
+def get_user_input(nutrient_columns, suffix=''):
     user_input = {}
     for nutrient in nutrient_columns:
+        key = f'{nutrient}_{suffix}' if nutrient != 'Crop' else nutrient
         if nutrient == 'Crop':
-            user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0)
+            user_input[nutrient] = st.number_input(f'Enter {nutrient} value:', min_value=0, max_value=2, step=1, value=0, key=key)
         else:
-            user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0)
+            user_input[nutrient] = st.number_input(f'Enter {nutrient} content (in percentage):', min_value=0.0, max_value=100.0, value=0.0, key=key)
     return user_input
 
 def make_prediction(loaded_model, user_input_df):
@@ -53,7 +54,7 @@ nutrient_columns_chl = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 user_input_chl = get_user_input(nutrient_columns_chl)
 
 # Submit button for Chlorophyll Prediction
-if st.button('Submit Chlorophyll Prediction'):
+if st.button('Submit for Chlorophyll Prediction'):
     valid_inputs_chl = all(0.0 <= user_input_chl[nutrient] <= 100.0 for nutrient in nutrient_columns_chl if nutrient != 'Crop')
     if not valid_inputs_chl:
         st.error("Please enter nutrient values in percentage form (0 to 100).")
