@@ -71,7 +71,7 @@ nutrient_columns_nitrogen = ['P', 'K', 'Ca', 'Mg', 'S', 'Crop']
 user_input_nitrogen = get_user_input(nutrient_columns_nitrogen)
 
 # Submit button for Nitrogen Prediction
-if st.button('Submit Nitrogen Prediction'):
+if st.button('Submit for Nitrogen Prediction'):
     valid_inputs_nitrogen = all(0.0 <= user_input_nitrogen[nutrient] <= 100.0 for nutrient in nutrient_columns_nitrogen if nutrient != 'Crop')
     if not valid_inputs_nitrogen:
         st.error("Please enter nutrient values in percentage form (0 to 100).")
