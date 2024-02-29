@@ -168,6 +168,28 @@ if st.button('Submit for Calcium Prediction'):
         prediction_calcium = make_prediction(calcium_model, user_input_df_calcium)
         st.write("**The predicted Calcium content is:**", prediction_calcium[0], "%")
 
+# Magnesium Prediction
+with st.container():
+    st.write("---")
+    st.header("Plant Magnesium prediction")
+    st.write("Input the values of each of the **nutrients in percentage form** and the Magnesium concentration will be automatically computed and displayed below as 'Predicted Magnesium Content'.")
+    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+
+# Load Magnesium Model
+magnesium_model = load_model('Magnesium_Random_Forest_model.pkl')
+nutrient_columns_magnesium = ['N', 'P', 'K', 'Ca', 'S', 'Crop']
+user_input_magnesium = get_user_input(nutrient_columns_magnesium, suffix='magnesium')
+
+# Submit button for Magnesium Prediction
+if st.button('Submit for Magnesium Prediction'):
+    valid_inputs_magnesium = all(0.0 <= user_input_magnesium[nutrient] <= 100.0 for nutrient in nutrient_columns_magnesium if nutrient != 'Crop')
+    if not valid_inputs_magnesium:
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
+    else:
+        user_input_df_magnesium = pd.DataFrame([user_input_magnesium])
+        prediction_magnesium = make_prediction(magnesium_model, user_input_df_magnesium)
+        st.write("**The predicted Magnesium content is:**", prediction_magnesium[0], "%")
+
 
 # Contact Section
 with st.container():
