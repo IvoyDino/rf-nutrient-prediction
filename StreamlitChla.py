@@ -79,6 +79,28 @@ if st.button('Submit for Nitrogen Prediction'):
         user_input_df_nitrogen = pd.DataFrame([user_input_nitrogen])
         prediction_nitrogen = make_prediction(nitrogen_model, user_input_df_nitrogen)
         st.write("**The predicted Nitrogen content is:**", prediction_nitrogen[0], "%")
+# Phosphorus Prediction
+with st.container():
+    st.write("---")
+    st.header("Plant Phosphorus prediction")
+    st.write("Input the values of each of the **nutrients in percentage form** and the Phosphorus concentration will be automatically computed and displayed below as 'Predicted Phosphorus Content'.")
+    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+
+# Load Phosphorus Model
+phosphorus_model = load_model('Phosphorus_Random_Forest_model.pkl')
+nutrient_columns_phosphorus = ['N', 'K', 'Ca', 'Mg', 'S', 'Crop']
+user_input_phosphorus = get_user_input(nutrient_columns_phosphorus, suffix='phosphorus')
+
+# Submit button for Phosphorus Prediction
+if st.button('Submit for Phosphorus Prediction'):
+    valid_inputs_phosphorus = all(0.0 <= user_input_phosphorus[nutrient] <= 100.0 for nutrient in nutrient_columns_phosphorus if nutrient != 'Crop')
+    if not valid_inputs_phosphorus:
+        st.error("Please enter nutrient values in percentage form (0 to 100).")
+    else:
+        user_input_df_phosphorus = pd.DataFrame([user_input_phosphorus])
+        prediction_phosphorus = make_prediction(phosphorus_model, user_input_df_phosphorus)
+        st.write("**The predicted Phosphorus content is:**", prediction_phosphorus[0], "%")
+
 
 # Contact Section
 with st.container():
