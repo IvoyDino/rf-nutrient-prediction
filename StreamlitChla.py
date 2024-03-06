@@ -20,7 +20,7 @@ def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}<style>",unsafe_allow_html=True)
 
-local_css("style/style.css")
+local_css("style.css")
 
 def load_model(model_filename):
     model_path = os.path.join(os.getcwd(), model_filename)
