@@ -3,26 +3,27 @@ import streamlit as st
 import sklearn
 st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
 #website tracking
+def google_analytics_tracking_code(measurement_id):
+    code = f"""
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){{dataLayer.push(arguments);}}
+        gtag('js', new Date());
+        gtag('config', '{measurement_id}');
+    </script>
+    """
+    return code
+
 # Google Analytics Measurement ID
 measurement_id = "G-7N6H5T3X3L"  # Replace with your actual Measurement ID
 
 # Google Analytics tracking code
-ga_tracking_code = f"""
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{measurement_id}');
-</script>
-"""
+ga_code = google_analytics_tracking_code(measurement_id)
 
 # Render the Google Analytics tracking code
-st.markdown(ga_tracking_code, unsafe_allow_html=True)
-
-    
-st.markdown(google_analytics_tracking_code(), unsafe_allow_html=True)
+st.markdown(ga_code, unsafe_allow_html=True)
 
 #...........HEADER SECTION.............
 with st.container():
