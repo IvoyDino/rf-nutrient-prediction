@@ -105,10 +105,12 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Nitrogen Model
-nitrogen_model = load_model('Nitrogen_Random_Forest_model.pkl')
-nutrient_columns_nitrogen = ['P', 'K', 'Ca', 'Mg', 'S', 'Crop']
-user_input_nitrogen = get_user_input(nutrient_columns_nitrogen)
-
+left_column, right_column = st.columns(2)
+with left_column:
+    nitrogen_model = load_model('Nitrogen_Random_Forest_model.pkl')
+    nutrient_columns_nitrogen = ['P', 'K', 'Ca', 'Mg', 'S', 'Crop']
+    user_input_nitrogen = get_user_input(nutrient_columns_nitrogen)
+    
 # Submit button for Nitrogen Prediction
 if st.button('Submit for Nitrogen Prediction'):
     valid_inputs_nitrogen = all(0.0 <= user_input_nitrogen[nutrient] <= 100.0 for nutrient in nutrient_columns_nitrogen if nutrient != 'Crop')
@@ -118,6 +120,9 @@ if st.button('Submit for Nitrogen Prediction'):
         user_input_df_nitrogen = pd.DataFrame([user_input_nitrogen])
         prediction_nitrogen = make_prediction(nitrogen_model, user_input_df_nitrogen)
         st.write("**The predicted Nitrogen content is:**", prediction_nitrogen[0], "%")
+with right_column:
+    st.empty()
+
 # Phosphorus Prediction
 with st.container():
     st.write("---")
