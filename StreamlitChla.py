@@ -195,5 +195,5 @@ if st.button('Submit for Magnesium Prediction'):
 with st.container():
     st.write("---")
     st.subheader("Contact me")
-    st.write("Please give me some feedback based on your experience with the web app and any suggestions are welcome""
+    st.write("Please give me some feedback based on your experience with the web app and any suggestions are welcome")
     st.write("Email: ioyeg002@fiu.edu; Tel: (786) 710 0470")
