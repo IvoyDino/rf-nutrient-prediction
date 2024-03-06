@@ -195,5 +195,21 @@ if st.button('Submit for Magnesium Prediction'):
 with st.container():
     st.write("---")
     st.subheader("Contact me")
-    st.write("Please give me some feedback based on your experience with the web app and any suggestions are welcome")
-    st.write("Email: ioyeg002@fiu.edu; Tel: (786) 710 0470")
+    st.write("Please give me some feedback based on your experience with the web app and any suggestions are welcome.")
+    
+#contact form
+contact_form = """
+<form action="https://formsubmit.co/oyege92@gmail.com" method="POST">
+    <input type ="hidden" name="_captcha" value="false">
+     <input type="text" name="name" placeholder = "Your name" required>
+     <input type="email" name="email" placeholder = "Your email" required>
+     <input type="country" name="country" placeholder = "Your country of location" required>
+     <textarea name ="message" placeholder = "Your message here" required></textarea>
+     <button type="submit">Send</button>
+</form> 
+"""
+left_column, right_column = st.columns(2)
+with left_column:
+    st.markdown(contact_form, unsafe_allow_html=True)
+with right_column:
+    st.empty()
