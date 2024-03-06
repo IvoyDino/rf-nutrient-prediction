@@ -199,7 +199,7 @@ with st.container():
     
 #contact form
 contact_form = """
-<form action="https://formsubmit.co/oyegeivan@gmail.com" method="POST">
+<form action="https://formsubmit.co/oyege92@gmail.com" method="POST">
     <input type ="hidden" name="_captcha" value="false">
      <input type="text" name="name" placeholder = "Your name" required>
      <input type="email" name="email" placeholder = "Your email" required>
