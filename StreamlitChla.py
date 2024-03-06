@@ -203,7 +203,7 @@ contact_form = """
     <input type ="hidden" name="_captcha" value="false">
      <input type="text" name="name" placeholder = "Your name" required>
      <input type="email" name="email" placeholder = "Your email" required>
-     <input type="country" name="country" placeholder = "Country where you are accessing this web app (optional)">
+     <input type="country" name="country" placeholder = "Country of accessing">
      <textarea name ="message" placeholder = "Your message here" required></textarea>
      <button type="submit">Send</button>
 </form> 
