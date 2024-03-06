@@ -201,10 +201,10 @@ with st.container():
 contact_form = """
 <form action="https://formsubmit.co/oyege92@gmail.com" method="POST">
     <input type ="hidden" name="_captcha" value="false">
-     <input type="text" name="name" placeholder = "Your name" required>
-     <input type="email" name="email" placeholder = "Your email" required>
-     <input type="country" name="country" placeholder = "Country of accessing">
-     <textarea name ="message" placeholder = "Your message here" required></textarea>
+     <input type="text" name="Name" placeholder = "Your name" required>
+     <input type="email" name="Email" placeholder = "Your email" required>
+     <input type="country" name="Country" placeholder = "Country of accessing">
+     <textarea name ="Message" placeholder = "Your message here" required></textarea>
      <button type="submit">Send</button>
 </form> 
 """
