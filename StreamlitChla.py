@@ -1,11 +1,10 @@
 # Streamlit app script (StreamlitChla.py)
 import streamlit as st
-import streamlit.secrets as secrets
 import sklearn
 st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="🧊", layout="wide")
 #website tracking
 def google_analytics_tracking_code():
-    measurement_id = secrets["G-7N6H5T3X3L"]
+    measurement_id = st.secrets["G-7N6H5T3X3L"]
     code = f"""
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
