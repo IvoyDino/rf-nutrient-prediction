@@ -28,7 +28,7 @@ st.markdown(ga_code, unsafe_allow_html=True)
 #...........HEADER SECTION.............
 with st.container():
     st.title("Predict Plant Nutrients")
-    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions.")
+    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and the predictions may not be 100% accurate. However, your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions.")
     
 #........More Information about using the website.............. 
 import pandas as pd
@@ -131,9 +131,11 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Phosphorus Model
-phosphorus_model = load_model('Phosphorus_Random_Forest_model.pkl')
-nutrient_columns_phosphorus = ['N', 'K', 'Ca', 'Mg', 'S', 'Crop']
-user_input_phosphorus = get_user_input(nutrient_columns_phosphorus, suffix='phosphorus')
+left_column, right_column = st.columns(2)
+with left_column:
+    phosphorus_model = load_model('Phosphorus_Random_Forest_model.pkl')
+    nutrient_columns_phosphorus = ['N', 'K', 'Ca', 'Mg', 'S', 'Crop']
+    user_input_phosphorus = get_user_input(nutrient_columns_phosphorus, suffix='phosphorus')
 
 # Submit button for Phosphorus Prediction
 if st.button('Submit for Phosphorus Prediction'):
@@ -144,6 +146,8 @@ if st.button('Submit for Phosphorus Prediction'):
         user_input_df_phosphorus = pd.DataFrame([user_input_phosphorus])
         prediction_phosphorus = make_prediction(phosphorus_model, user_input_df_phosphorus)
         st.write("**The predicted Phosphorus content is:**", prediction_phosphorus[0], "%")
+with right_column:
+    st.empty()
 
 # Potassium Prediction
 with st.container():
@@ -153,9 +157,11 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Potassium Model
-potassium_model = load_model('Potassium_Random_Forest_model.pkl')
-nutrient_columns_potassium = ['N', 'P', 'Ca', 'Mg', 'S', 'Crop']
-user_input_potassium = get_user_input(nutrient_columns_potassium, suffix='potassium')
+left_column, right_column = st.columns(2)
+with left_column:
+    potassium_model = load_model('Potassium_Random_Forest_model.pkl')
+    nutrient_columns_potassium = ['N', 'P', 'Ca', 'Mg', 'S', 'Crop']
+    user_input_potassium = get_user_input(nutrient_columns_potassium, suffix='potassium')
 
 # Submit button for Potassium Prediction
 if st.button('Submit for Potassium Prediction'):
@@ -167,6 +173,8 @@ if st.button('Submit for Potassium Prediction'):
         prediction_potassium = make_prediction(potassium_model, user_input_df_potassium)
         st.write("**The predicted Potassium content is:**", prediction_potassium[0], "%")
 
+with right_column:
+    st.empty()
 
 # Sulfur Prediction
 with st.container():
@@ -176,9 +184,11 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Sulfur Model
-sulfur_model = load_model('Sulphur_Random_Forest_model.pkl')
-nutrient_columns_sulfur = ['N', 'P', 'K', 'Ca', 'Mg', 'Crop']
-user_input_sulfur = get_user_input(nutrient_columns_sulfur, suffix='sulfur')
+left_column, right_column = st.columns(2)
+with left_column:
+    sulfur_model = load_model('Sulphur_Random_Forest_model.pkl')
+    nutrient_columns_sulfur = ['N', 'P', 'K', 'Ca', 'Mg', 'Crop']
+    user_input_sulfur = get_user_input(nutrient_columns_sulfur, suffix='sulfur')
 
 # Submit button for Sulfur Prediction
 if st.button('Submit for Sulfur Prediction'):
@@ -190,6 +200,9 @@ if st.button('Submit for Sulfur Prediction'):
         prediction_sulfur = make_prediction(sulfur_model, user_input_df_sulfur)
         st.write("**The predicted Sulfur content is:**", prediction_sulfur[0], "%")
 
+with right_column:
+    st.empty()
+
 # Calcium Prediction
 with st.container():
     st.write("---")
@@ -198,9 +211,11 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Calcium Model
-calcium_model = load_model('Calcium_Random_Forest_model.pkl')
-nutrient_columns_calcium = ['N', 'P', 'K', 'Mg', 'S', 'Crop']
-user_input_calcium = get_user_input(nutrient_columns_calcium, suffix='calcium')
+left_column, right_column = st.columns(2)
+with left_column:
+    calcium_model = load_model('Calcium_Random_Forest_model.pkl')
+    nutrient_columns_calcium = ['N', 'P', 'K', 'Mg', 'S', 'Crop']
+    user_input_calcium = get_user_input(nutrient_columns_calcium, suffix='calcium')
 
 # Submit button for Calcium Prediction
 if st.button('Submit for Calcium Prediction'):
@@ -212,6 +227,9 @@ if st.button('Submit for Calcium Prediction'):
         prediction_calcium = make_prediction(calcium_model, user_input_df_calcium)
         st.write("**The predicted Calcium content is:**", prediction_calcium[0], "%")
 
+with right_column:
+    st.empty()
+
 # Magnesium Prediction
 with st.container():
     st.write("---")
@@ -220,9 +238,11 @@ with st.container():
     st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
 
 # Load Magnesium Model
-magnesium_model = load_model('Magnesium_Random_Forest_model.pkl')
-nutrient_columns_magnesium = ['N', 'P', 'K', 'Ca', 'S', 'Crop']
-user_input_magnesium = get_user_input(nutrient_columns_magnesium, suffix='magnesium')
+left_column, right_column = st.columns(2)
+with left_column:
+    magnesium_model = load_model('Magnesium_Random_Forest_model.pkl')
+    nutrient_columns_magnesium = ['N', 'P', 'K', 'Ca', 'S', 'Crop']
+    user_input_magnesium = get_user_input(nutrient_columns_magnesium, suffix='magnesium')
 
 # Submit button for Magnesium Prediction
 if st.button('Submit for Magnesium Prediction'):
@@ -234,6 +254,8 @@ if st.button('Submit for Magnesium Prediction'):
         prediction_magnesium = make_prediction(magnesium_model, user_input_df_magnesium)
         st.write("**The predicted Magnesium content is:**", prediction_magnesium[0], "%")
 
+with right_column:
+    st.empty()
 
 # Contact Section
 with st.container():
