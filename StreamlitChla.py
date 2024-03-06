@@ -28,7 +28,7 @@ st.markdown(ga_code, unsafe_allow_html=True)
 #...........HEADER SECTION.............
 with st.container():
     st.title("Predict Plant Nutrients")
-    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and the predictions may not be 100% accurate. However, your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions.")
+    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and the predictions may not be 100% accurate. However, your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions. You can use the app to predict **Chlorophyll, Nitrogen, Phosphorus, Potassium, Calcium, Magnesium, and Sulfur** content in plants.")
     
 #........More Information about using the website.............. 
 import pandas as pd
