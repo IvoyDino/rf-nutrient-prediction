@@ -18,8 +18,15 @@ ga_code = f"""
 </script>
 """
 
-# Render the Google Analytics tracking code without making it visible in the app
-st.markdown(ga_code, unsafe_allow_html=True, key='ga_code', visible=False)
+# Create an empty container and add the tracking code without rendering it visibly
+container = st.empty()
+container.markdown(ga_code, unsafe_allow_html=True)
+
+# Rest of your Streamlit app script
+with st.container():
+    st.title("Predict Plant Nutrients")
+    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and the predictions may not be 100% accurate. However, your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions. You can use the app to predict **Chlorophyll, Nitrogen, Phosphorus, Potassium, Calcium, Magnesium, and Sulfur** content in plants.")
+
 
 # Rest of your Streamlit app script
 with st.container():
