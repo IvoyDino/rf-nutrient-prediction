@@ -6,8 +6,7 @@ st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="ðŸ
 # Google Analytics Measurement ID
 measurement_id = "G-7N6H5T3X3L"  # Replace with your actual Measurement ID
 
-# Google Analytics tracking code
-ga_code = f"""
+st.markdown(f"""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
 <script>
@@ -16,11 +15,7 @@ ga_code = f"""
   gtag('js', new Date());
   gtag('config', '{measurement_id}');
 </script>
-"""
-
-# Render the Google Analytics tracking code
-st.markdown(ga_code, unsafe_allow_html=True)
-
+""")
 
 #...........HEADER SECTION.............
 with st.container():
