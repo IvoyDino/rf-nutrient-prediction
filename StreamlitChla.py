@@ -6,7 +6,8 @@ st.set_page_config(page_title="Plant Nutrient Prediction Website", page_icon="ðŸ
 # Google Analytics Measurement ID
 measurement_id = "G-7N6H5T3X3L"  # Replace with your actual Measurement ID
 
-st.markdown(f"""
+# Google Analytics tracking code
+ga_code = f"""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
 <script>
@@ -15,7 +16,16 @@ st.markdown(f"""
   gtag('js', new Date());
   gtag('config', '{measurement_id}');
 </script>
-""")
+"""
+
+# Render the Google Analytics tracking code without making it visible in the app
+st.markdown(ga_code, unsafe_allow_html=True, key='ga_code', visible=False)
+
+# Rest of your Streamlit app script
+with st.container():
+    st.title("Predict Plant Nutrients")
+    st.write("Hello! Thank you for using this web app developed by Ivan Oyege. This app is under testing and the predictions may not be 100% accurate. However, your feedback will help in improving it. Kindly leave a comment in the 'Contact Me' section at the bottom of the page, based on your experience and the accuracy of the predictions. You can use the app to predict **Chlorophyll, Nitrogen, Phosphorus, Potassium, Calcium, Magnesium, and Sulfur** content in plants.")
+
 
 #...........HEADER SECTION.............
 with st.container():
