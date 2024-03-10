@@ -151,7 +151,7 @@ with st.container():
     st.write("---")
     st.header("Plant Potassium prediction")
     st.write("Input the values of each of the **nutrients in percentage form** and the Potassium concentration will be automatically computed and displayed below as 'Predicted Potassium Content'.")
-    st.write("**NOTE**: for 'Crops' field, the entries should be **0, 1 and 2 only**; for these crops **Corn = 0**; **Sorghum = 1**, and **Soybeans = 2**. So far, these are the only plants on which the model was trained.")
+    st.write("**NOTE**: 'Crops' field not necessary for Potassium estimation")
 
 # Load Potassium Model
 left_column, right_column = st.columns(2)
